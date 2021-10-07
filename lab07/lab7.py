@@ -159,54 +159,52 @@ def startup():
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, None)
     glEnableVertexAttribArray(0)
 
-    # vertex_array_object = glGenVertexArrays(1)
-    # glBindVertexArray(vertex_array_object)
-
     vertex_colors = numpy.array([
+        # 1
         -0.25, +0.25, -0.25,
         -0.25, -0.25, -0.25,
         +0.25, -0.25, -0.25,
-
+        # 2
         +0.25, -0.25, -0.25,
         +0.25, +0.25, -0.25,
         -0.25, +0.25, -0.25,
-
+        # 3
         +0.25, -0.25, -0.25,
         +0.25, -0.25, +0.25,
         +0.25, +0.25, -0.25,
-
+        # 4
         +0.25, -0.25, +0.25,
         +0.25, +0.25, +0.25,
         +0.25, +0.25, -0.25,
-
+        # 5
         +0.25, -0.25, +0.25,
         -0.25, -0.25, +0.25,
         +0.25, +0.25, +0.25,
-
+        # 6
         -0.25, -0.25, +0.25,
         -0.25, +0.25, +0.25,
         +0.25, +0.25, +0.25,
-
+        # 7
         -0.25, -0.25, +0.25,
         -0.25, -0.25, -0.25,
         -0.25, +0.25, +0.25,
-
+        # 8
         -0.25, -0.25, -0.25,
         -0.25, +0.25, -0.25,
         -0.25, +0.25, +0.25,
-
+        # 9
         -0.25, -0.25, +0.25,
         +0.25, -0.25, +0.25,
         +0.25, -0.25, -0.25,
-
+        # 10
         +0.25, -0.25, -0.25,
         -0.25, -0.25, -0.25,
         -0.25, -0.25, +0.25,
-
+        # 11
         -0.25, +0.25, -0.25,
         +0.25, +0.25, -0.25,
         +0.25, +0.25, +0.25,
-
+        # 12
         +0.25, +0.25, +0.25,
         -0.25, +0.25, +0.25,
         -0.25, +0.25, -0.25,
@@ -215,8 +213,7 @@ def startup():
     vertex_buffer = glGenBuffers(1)
     glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer)
     glBufferData(GL_ARRAY_BUFFER, vertex_colors, GL_STATIC_DRAW)
-    
-    
+
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, None)
     glEnableVertexAttribArray(1)
 
@@ -238,7 +235,7 @@ def render(time):
     M_matrix = glm.rotate(glm.mat4(1.0), time, glm.vec3(1.0, 1.0, 0.0))
 
     V_matrix = glm.lookAt(
-        glm.vec3(0.0, 0.0, 1.0),
+        glm.vec3(0.0, 0.0, 5.0),
         glm.vec3(0.0, 0.0, 0.0),
         glm.vec3(0.0, 1.0, 0.0)
     )
@@ -252,7 +249,10 @@ def render(time):
     glUniformMatrix4fv(V_location, 1, GL_FALSE, glm.value_ptr(V_matrix))
     glUniformMatrix4fv(P_location, 1, GL_FALSE, glm.value_ptr(P_matrix))
 
-    glDrawArrays(GL_TRIANGLES, 0, 36)
+    # glDrawArrays(GL_TRIANGLES, 0, 36)
+    for _ in range(25):
+        glDrawArraysInstanced(GL_TRIANGLES, 0, 36, 25)
+        
 
 
 def update_viewport(window, width, height):

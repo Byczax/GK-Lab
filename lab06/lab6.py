@@ -50,7 +50,7 @@ active_image = True
 hide_wall = False
 play_sound = False
 active_egg = False
-samples = 100
+samples = 50
 vertices = []
 
 def load_texture(image):

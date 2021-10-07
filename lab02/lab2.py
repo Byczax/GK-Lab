@@ -226,7 +226,7 @@ def main():
         selected_mode = 4
     elif sys.argv[1] == "5.0":
         selected_mode = 5
-    elif sys.argv[1] == ("Extra" or "extra"):
+    elif sys.argv[1].lower() == "extra":
         selected_mode = 6
         
     if not glfwInit():

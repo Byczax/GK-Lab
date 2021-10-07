@@ -19,6 +19,7 @@ from glfw.GLFW import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
 import math
+# from playsound import playsound
 
 
 viewer = [0.0, 0.0, 10.0]
@@ -408,6 +409,7 @@ def main():
     if not window:
         glfwTerminate()
         sys.exit(-1)
+    # playsound('lab05/iron_maiden.mp3',False)
 
     glfwMakeContextCurrent(window)
     glfwSetFramebufferSizeCallback(window, update_viewport)
