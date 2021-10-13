@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 '''
-goto def render()
-and select wanted figure
+use arguments to select wanted piece, write without argument to get help menu
 '''
 
 import os
@@ -14,6 +13,8 @@ from OpenGL.GLU import *
 import random as rand
 import math
 from enum import Enum
+
+seed = rand.random()
 
 selected_mode = 0
 class Modes(Enum):
@@ -138,7 +139,7 @@ def sierpinski_triangle(x: int, y: int, a: int, deep: int = 5):
 
 
 def maze(x: int, y: int, a: int, b: int, field_size: int):
-    rand.seed(420)
+    rand.seed(seed)
     max_removal = 1
     glClear(GL_COLOR_BUFFER_BIT)  # clearing the frame in memory
     glColor3f(0, 1, 1)
@@ -207,6 +208,7 @@ def main():
 
     if len(sys.argv) < 2:
         print('\033[1;32m')
+        print("Usage: python.exe " + sys.argv[0] + " <mode>")
         print("Select run mode with argument:\n")
         print("3.0 - Simple triangle")
         print("3.5 - Simple rectangle")
