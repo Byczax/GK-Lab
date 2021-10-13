@@ -191,8 +191,8 @@ def render_egg():
 # def draw_triangle_strips():
     glBegin(GL_TRIANGLE_STRIP)
     for i in range(samples - 1):
-        new_v =-( i / samples + 1)
-        
+        new_v =( i / samples + 1)
+        new_v2 = ( (i+1) / samples + 1)
         # glTexCoord2f(new_v, 0)
         glVertex3fv(vertices[i][0])
         # glTexCoord2f(new_v+1, 0)
@@ -202,19 +202,21 @@ def render_egg():
             new_u =-( j / samples + 1)*2
             
             if j/samples < 0.5:
-                glTexCoord2f(1/(new_v/2), new_u)
+                glTexCoord2f(new_v2, new_u)
                 glVertex3fv(vertices[i+1][j])
                 # glTexCoord3fv(vertices[i+1][j])
-                glTexCoord2f(1/(new_v/2), new_u)
+                # new_v = ( (i+1) / samples + 1)
+                glTexCoord2f(new_v, new_u)
                 glVertex3fv(vertices[i][j])
                 # glTexCoord3fv(vertices[i][j])
             else:
                 # new_v = -(samples/i)
                 # new_u =-( samples /j + 1)
-                glTexCoord2f(1/(-new_v/2), new_u)
+                glTexCoord2f(new_v, new_u)
                 glVertex3fv(vertices[i][j])
                 # glTexCoord3fv(vertices[i][j])
-                glTexCoord2f(1/(-new_v/2), new_u)
+                # new_v = ( (i+1) / samples + 1)
+                glTexCoord2f(new_v2, new_u)
                 glVertex3fv(vertices[i+1][j])
                 # glTexCoord3fv(vertices[i+1][j])
     glEnd()
